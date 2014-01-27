@@ -175,9 +175,10 @@ Blockly.Blocks.lists_length = {
   init: function() {
     this.setHelpUrl(Blockly.Msg.LISTS_LENGTH_HELPURL);
     this.setHSV(40, 1.0, 0.99);
-    this.appendValueInput('VALUE')
-        .setCheck(['Array', 'String'])
-        .appendTitle(Blockly.Msg.LISTS_LENGTH_INPUT_LENGTH);
+    this.interpolateMsg(Blockly.Msg.LISTS_LENGTH_TITLE,
+                        ['VALUE', ['Array', 'String'], Blockly.ALIGN_RIGHT],
+                        Blockly.ALIGN_RIGHT)
+    this.setInputsInline(true);        
     this.setOutput(true, 'Number');
     this.setTooltip(Blockly.Msg.LISTS_LENGTH_TOOLTIP);
   }
@@ -294,16 +295,11 @@ Blockly.Blocks.lists_getIndex = {
   },
   updateAt: function(isAt) {
     // Create or delete an input for the numeric index.
-    // Destroy old 'AT' and 'ORDINAL' inputs.
+    // Destroy old 'AT' input.
     this.removeInput('AT');
-    this.removeInput('ORDINAL', true);
     // Create either a value 'AT' input or a dummy input.
     if (isAt) {
       this.appendValueInput('AT').setCheck('Number');
-      if (Blockly.Msg.ORDINAL_NUMBER_SUFFIX) {
-        this.appendDummyInput('ORDINAL')
-            .appendTitle(Blockly.Msg.ORDINAL_NUMBER_SUFFIX);
-      }
     } else {
       this.appendDummyInput('AT');
     }
@@ -378,16 +374,11 @@ Blockly.Blocks.lists_setIndex = {
   },
   updateAt: function(isAt) {
     // Create or delete an input for the numeric index.
-    // Destroy old 'AT' and 'ORDINAL' input.
+    // Destroy old 'AT' input.
     this.removeInput('AT');
-    this.removeInput('ORDINAL', true);
     // Create either a value 'AT' input or a dummy input.
     if (isAt) {
       this.appendValueInput('AT').setCheck('Number');
-      if (Blockly.Msg.ORDINAL_NUMBER_SUFFIX) {
-        this.appendDummyInput('ORDINAL')
-            .appendTitle(Blockly.Msg.ORDINAL_NUMBER_SUFFIX);
-      }
     } else {
       this.appendDummyInput('AT');
     }
@@ -404,10 +395,6 @@ Blockly.Blocks.lists_setIndex = {
       return undefined;
     });
     this.moveInputBefore('AT', 'TO');
-    if (this.getInput('ORDINAL')) {
-      this.moveInputBefore('ORDINAL', 'TO');
-    }
-
     this.getInput('AT').appendTitle(menu, 'WHERE');
   }
 };
@@ -458,16 +445,11 @@ Blockly.Blocks.lists_getSublist = {
   },
   updateAt: function(n, isAt) {
     // Create or delete an input for the numeric index.
-    // Destroy old 'AT' and 'ORDINAL' inputs.
+    // Destroy old 'AT' input.
     this.removeInput('AT' + n);
-    this.removeInput('ORDINAL' + n, true);
     // Create either a value 'AT' input or a dummy input.
     if (isAt) {
       this.appendValueInput('AT' + n).setCheck('Number');
-      if (Blockly.Msg.ORDINAL_NUMBER_SUFFIX) {
-        this.appendDummyInput('ORDINAL' + n)
-            .appendTitle(Blockly.Msg.ORDINAL_NUMBER_SUFFIX);
-      }
     } else {
       this.appendDummyInput('AT' + n);
     }
@@ -488,9 +470,6 @@ Blockly.Blocks.lists_getSublist = {
         .appendTitle(menu, 'WHERE' + n);
     if (n == 1) {
       this.moveInputBefore('AT1', 'AT2');
-      if (this.getInput('ORDINAL1')) {
-        this.moveInputBefore('ORDINAL1', 'AT2');
-      }
     }
     if (Blockly.Msg.LISTS_GET_SUBLIST_TAIL) {
       this.moveInputBefore('TAIL', null);
