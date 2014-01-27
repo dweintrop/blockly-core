@@ -203,6 +203,7 @@ Blockly.Blocks.text_length = {
     this.interpolateMsg(Blockly.Msg.TEXT_LENGTH_TITLE,
                         ['VALUE', ['String', 'Array'], Blockly.ALIGN_RIGHT],
                         Blockly.ALIGN_RIGHT);
+    this.setInputsInline(true);
     this.setOutput(true, 'Number');
     this.setTooltip(Blockly.Msg.TEXT_LENGTH_TOOLTIP);
   }
@@ -217,6 +218,7 @@ Blockly.Blocks.text_isEmpty = {
                         ['VALUE', ['String', 'Array'], Blockly.ALIGN_RIGHT],
                         Blockly.ALIGN_RIGHT);
     this.setOutput(true, 'Boolean');
+    this.setInputsInline(true);
     this.setTooltip(Blockly.Msg.TEXT_ISEMPTY_TOOLTIP);
   }
 };
@@ -280,16 +282,11 @@ Blockly.Blocks.text_charAt = {
   },
   updateAt: function(isAt) {
     // Create or delete an input for the numeric index.
-    // Destroy old 'AT' and 'ORDINAL' inputs.
+    // Destroy old 'AT' input.
     this.removeInput('AT');
-    this.removeInput('ORDINAL', true);
     // Create either a value 'AT' input or a dummy input.
     if (isAt) {
       this.appendValueInput('AT').setCheck('Number');
-      if (Blockly.Msg.ORDINAL_NUMBER_SUFFIX) {
-        this.appendDummyInput('ORDINAL')
-            .appendTitle(Blockly.Msg.ORDINAL_NUMBER_SUFFIX);
-      }
     } else {
       this.appendDummyInput('AT');
     }
@@ -360,16 +357,11 @@ Blockly.Blocks.text_getSubstring = {
   },
   updateAt: function(n, isAt) {
     // Create or delete an input for the numeric index.
-    // Destroy old 'AT' and 'ORDINAL' inputs.
+    // Destroy old 'AT' input.
     this.removeInput('AT' + n);
-    this.removeInput('ORDINAL' + n, true);
     // Create either a value 'AT' input or a dummy input.
     if (isAt) {
       this.appendValueInput('AT' + n).setCheck('Number');
-      if (Blockly.Msg.ORDINAL_NUMBER_SUFFIX) {
-        this.appendDummyInput('ORDINAL' + n)
-            .appendTitle(Blockly.Msg.ORDINAL_NUMBER_SUFFIX);
-      }
     } else {
       this.appendDummyInput('AT' + n);
     }
