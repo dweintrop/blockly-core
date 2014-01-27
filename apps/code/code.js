@@ -25,7 +25,7 @@
 // Supported languages.
 BlocklyApps.LANGUAGES = {
   // Format: ['Language name', 'direction', 'XX_compressed.js']
-  en: ['English', 'ltr', 'msg/js/en.js'],
+  en: ['English', 'ltr', 'msg/js/en_us.js'],
   de: ['Deutsch', 'ltr', 'msg/js/de.js'],
   hu: ['Magyar', 'ltr', 'msg/js/en.js'],
   vi: ['Tiếng Việt', 'ltr', 'msg/js/vi.js'],

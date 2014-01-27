@@ -27,8 +27,17 @@
  */
 {template .start}
   {call .messages /}
-  <script type="text/javascript" src="../../blockly_compressed.js"></script>
-  <script type="text/javascript" src="../../blocks_compressed.js"></script>
+  <script type="text/javascript" src="../../blockly_uncompressed.js"></script>
+  <!-- <script type="text/javascript" src="../../blocks_compressed.js"></script> -->
+  <script type="text/javascript" src="../../blocks/colour.js"></script>
+  <script type="text/javascript" src="../../blocks/lists.js"></script>
+  <script type="text/javascript" src="../../blocks/logic.js"></script>
+  <script type="text/javascript" src="../../blocks/loops.js"></script>
+  <script type="text/javascript" src="../../blocks/math.js"></script>
+  <script type="text/javascript" src="../../blocks/procedures.js"></script>
+  <script type="text/javascript" src="../../blocks/text.js"></script>
+  <script type="text/javascript" src="../../blocks/variables.js"></script>
+
   <script type="text/javascript" src="../../javascript_compressed.js"></script>
   <script type="text/javascript" src="../../python_compressed.js"></script>
   <script type="text/javascript" src="../../{$ij.langSrc}"></script>
@@ -269,7 +278,7 @@
 {template .readonly}
   {call .messages /}
 
-  <script type="text/javascript" src="../../blockly_compressed.js"></script>
+  <script type="text/javascript" src="../../blockly_uncompressed.js"></script>
   <script type="text/javascript" src="../../{$ij.langSrc}"></script>
   <div id="blockly"></div>
 {/template}
