@@ -56,5 +56,5 @@ mazepage.toolbox = function(opt_data, opt_ignored, opt_ijData) {
 
 
 mazepage.readonly = function(opt_data, opt_ignored, opt_ijData) {
-  return mazepage.messages(null, null, opt_ijData) + '<script type="text/javascript" src="../../blockly_compressed.js"><\/script><script type="text/javascript" src="../../' + soy.$$escapeHtml(opt_ijData.langSrc) + '"><\/script><script type="text/javascript" src="blocks.js"><\/script><div id="blockly"></div>';
+  return mazepage.messages(null, null, opt_ijData) + '<script type="text/javascript" src="../../blockly_uncompressed.js"><\/script><script type="text/javascript" src="../../' + soy.$$escapeHtml(opt_ijData.langSrc) + '"><\/script><script type="text/javascript" src="blocks.js"><\/script><div id="blockly"></div>';
 };

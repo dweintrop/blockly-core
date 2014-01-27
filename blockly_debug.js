@@ -17230,7 +17230,7 @@ Blockly.Css.CONTENT = [".blocklySvg {", "  cursor: pointer;", "  background-colo
 "}", ".blocklyTreeRow:hover {", "  background-color: #e4e4e4;", "}", ".blocklyTreeIcon {", "  height: 16px;", "  width: 16px;", "  vertical-align: middle;", "  background-image: url(%TREE_PATH%);", "}", ".blocklyTreeIconClosedLtr {", "  background-position: -32px -1px;", "}", ".blocklyTreeIconClosedRtl {", "  background-position: 0px -1px;", "}", ".blocklyTreeIconOpen {", "  background-position: -16px -1px;", "}", ".blocklyTreeIconNone {", "  background-position: -48px -1px;", "}", ".blocklyTreeSelected>.blocklyTreeIconClosedLtr {", 
 "  background-position: -32px -17px;", "}", ".blocklyTreeSelected>.blocklyTreeIconClosedRtl {", "  background-position: 0px -17px;", "}", ".blocklyTreeSelected>.blocklyTreeIconOpen {", "  background-position: -16px -17px;", "}", ".blocklyTreeSelected>.blocklyTreeIconNone {", "  background-position: -48px -17px;", "}", ".blocklyTreeLabel {", "  cursor: default;", "  font-family: sans-serif;", "  font-size: 16px;", "  padding: 0 3px;", "  vertical-align: middle;", "}", ".blocklyTreeSelected  {", "  background-color: #57e !important;", 
 "}", ".blocklyTreeSelected .blocklyTreeLabel {", "  color: #fff;", "}", ".blocklyArrow {", "   font-size: 80%;", " }", "", "/*", " * Copyright 2007 The Closure Library Authors. All Rights Reserved.", " *", " * Use of this source code is governed by the Apache License, Version 2.0.", " * See the COPYING file for details.", " */", "", "/* Author: pupius@google.com (Daniel Pupius) */", "", "/*", " Styles to make the colorpicker look like the old gmail color picker", " NOTE: without CSS scoping this will override styles defined in palette.css", 
-"*/", ".goog-palette {", "  outline: none;", "  cursor: default;", "}", "", ".goog-palette-table {", "  border: 1px solid #666;", "  border-collapse: collapse;", "}", "", ".goog-palette-cell {", "  height: 13px;", "  width: 15px;", "  margin: 0;", "  border: 0;", "  text-align: center;", "  vertical-align: middle;", "  border-right: 1px solid #666;", "  font-size: 1px;", "}", "", ".goog-palette-colorswatch {", "  position: relative;", "  height: 13px;", "  width: 15px;", "  border: 1px solid #666;", 
+"*/", ".goog-palette {", "  outline: none;", "  cursor: default;", "}", "", ".goog-palette-table {", "  border: 1px solid #666;", "  border-collapse: collapse;", "}", "", ".goog-palette-cell {", "  height: 25px;", "  width: 25px;", "  margin: 0;", "  border: 0;", "  text-align: center;", "  vertical-align: middle;", "  border-right: 1px solid #666;", "  font-size: 1px;", "}", "", ".goog-palette-colorswatch {", "  position: relative;", "  height: 25px;", "  width: 25px;", "  border: 1px solid #666;", 
 "}", "", ".goog-palette-cell-hover .goog-palette-colorswatch {", "  border: 1px solid #FFF;", "}", "", ".goog-palette-cell-selected .goog-palette-colorswatch {", "  border: 1px solid #000;", "  color: #fff;", "}", ""];
 goog.provide("Blockly.inject");
 goog.require("Blockly.Css");
@@ -17283,8 +17283,8 @@ Blockly.parseOptions_ = function(options) {
       hasScrollbars = true
     }
   }
-  return{RTL:!!options["rtl"], collapse:hasCollapse, readOnly:readOnly, maxBlocks:options["maxBlocks"] || Infinity, assetUrl:options["assetUrl"] || function(path) {
-    return"./" + path
+  return{RTL:!!options["rtl"], collapse:hasCollapse, readOnly:readOnly, maxBlocks:options["maxBlocks"] || Infinity, assetUrl:options["assetUrl"] || function(inPath) {
+    return options["path"] + inPath
   }, hasCategories:hasCategories, hasScrollbars:hasScrollbars, hasTrashcan:hasTrashcan, languageTree:tree}
 };
 Blockly.createDom_ = function(container) {
@@ -17366,9 +17366,6 @@ Blockly.createDom_ = function(container) {
   if(!Blockly.readOnly && Blockly.FieldDropdown) {
     svg.appendChild(Blockly.FieldDropdown.createDom())
   }
-  if(Blockly.ContextMenu && Blockly.ContextMenu) {
-    svg.appendChild(Blockly.ContextMenu.createDom())
-  }
   container.appendChild(svg);
   Blockly.svg = svg;
   Blockly.svgResize();
@@ -17392,9 +17389,9 @@ Blockly.init_ = function() {
   Blockly.bindEvent_(Blockly.svg, "mousedown", null, Blockly.onMouseDown_);
   Blockly.bindEvent_(Blockly.svg, "mousemove", null, Blockly.onMouseMove_);
   Blockly.bindEvent_(Blockly.svg, "contextmenu", null, Blockly.onContextMenu_);
+  Blockly.bindEvent_(Blockly.svg, "mouseup", null, Blockly.onMouseUp_);
   if(!Blockly.documentEventsBound_) {
     Blockly.bindEvent_(window, "resize", document, Blockly.svgResize);
-    Blockly.bindEvent_(document, "mouseup", null, Blockly.onMouseUp_);
     Blockly.bindEvent_(document, "keydown", null, Blockly.onKeyDown_);
     if(goog.userAgent.IPAD) {
       Blockly.bindEvent_(window, "orientationchange", document, function() {
@@ -17920,34 +17917,34 @@ Blockly.createSoundFromBuffer_ = function(options) {
   gainNode.gain.value = options.volume || 1;
   return source
 };
-Blockly.loadWebAudio_ = function(filenames, name) {
+Blockly.loadWebAudio_ = function(filename, name) {
   var request = new XMLHttpRequest;
-  request.open("GET", filenames[0], true);
+  request.open("GET", filename, true);
   request.responseType = "arraybuffer";
   request.onload = Blockly.onSoundLoad_(request, name);
   request.send()
 };
 Blockly.loadAudio_ = function(filenames, name) {
-  if(window.AudioContext) {
-    Blockly.loadWebAudio_(filenames, name)
-  }else {
-    if(window.Audio && filenames.length) {
-      var sound;
-      var audioTest = new window.Audio;
-      for(var i = 0;i < filenames.length;i++) {
-        var filename = filenames[i];
-        var ext = filename.match(/\.(\w+)(\?.*)?$/);
-        if(ext && audioTest.canPlayType("audio/" + ext[1])) {
-          sound = new window.Audio(filename);
-          break
-        }
+  if(window.Audio && filenames.length) {
+    var audioTest = new window.Audio;
+    for(var i = 0, filename;filename = filenames[i];i++) {
+      var ext = filename.match(/\.(\w+)(\?.*)?$/);
+      if(ext && audioTest.canPlayType("audio/" + ext[1])) {
+        break
       }
-      if(sound && sound.play) {
-        if(!goog.userAgent.isDocumentMode(9)) {
-          sound.play();
-          sound.pause()
+    }
+    if(filename) {
+      if(window.AudioContext) {
+        Blockly.loadWebAudio_(filename, name)
+      }else {
+        var sound = new window.Audio(filename);
+        if(sound && sound.play) {
+          if(!goog.userAgent.isDocumentMode(9)) {
+            sound.play();
+            sound.pause()
+          }
+          Blockly.SOUNDS_[name] = sound
         }
-        Blockly.SOUNDS_[name] = sound
       }
     }
   }

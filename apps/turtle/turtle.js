@@ -31,7 +31,7 @@ var Turtle = {};
 // Supported languages.
 BlocklyApps.LANGUAGES = {
   // Format: ['Language name', 'direction', 'XX_compressed.js']
-  en: ['English', 'ltr', 'msg/js/en.js'],
+  en: ['English', 'ltr', 'msg/js/en_us.js'],
   de: ['Deutsch', 'ltr', 'msg/js/de.js'],
   hu: ['Magyar', 'ltr', 'msg/js/en.js'],
   vi: ['Tiếng Việt', 'ltr', 'msg/js/vi.js']
@@ -110,10 +110,10 @@ Turtle.init = function() {
 
   var defaultXml =
       '<xml>' +
-      '  <block type="draw_move" x="70" y="70">' +
+      '  <block type="draw_move" x="170" y="170">' +
       '    <value name="VALUE">' +
       '      <block type="math_number">' +
-      '        <title name="NUM">100</title>' +
+      '        <title name="NUM">501</title>' +
       '      </block>' +
       '    </value>' +
       '  </block>' +
