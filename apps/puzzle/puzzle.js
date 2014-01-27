@@ -41,7 +41,7 @@ BlocklyApps.LANGUAGES = {
   da: ['Dansk', 'ltr', 'msg/js/en.js'],
   de: ['Deutsch', 'ltr', 'msg/js/de.js'],
   el: ['Ελληνικά', 'ltr', 'msg/js/en.js'],
-  en: ['English', 'ltr', 'msg/js/en.js'],
+  en: ['English', 'ltr', 'msg/js/en_us.js'],
   es: ['Español', 'ltr', 'msg/js/en.js'],
   eu: ['Euskara', 'ltr', 'msg/js/en.js'],
   fa: ['یسراف', 'rtl', 'msg/js/en.js'],
