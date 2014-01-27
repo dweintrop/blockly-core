@@ -47,19 +47,22 @@ Blockly.JavaScript.maze_moveForward = function() {
 
 Blockly.Blocks.maze_turn = {
   // Block for turning left or right.
+  DIRECTIONS: undefined,
   init: function() {
-    var DIRECTIONS =
-        [[BlocklyApps.getMsg('Maze_turnLeft'), 'turnLeft'],
-         [BlocklyApps.getMsg('Maze_turnRight'), 'turnRight']];
-    if (Maze.addArrows) {
-      // Append arrows to direction messages.
-      DIRECTIONS[0][0] += ' \u21BA';
-      DIRECTIONS[1][0] += ' \u21BB';
+    if (!this.DIRECTIONS) {
+      this.DIRECTIONS =
+          [[BlocklyApps.getMsg('Maze_turnLeft'), 'turnLeft'],
+           [BlocklyApps.getMsg('Maze_turnRight'), 'turnRight']];
+      if (Maze.addArrows) {
+        // Append arrows to direction messages.
+        this.DIRECTIONS[0][0] += ' \u21BA';
+        this.DIRECTIONS[1][0] += ' \u21BB';
+      }
     }
     this.setHelpUrl('http://code.google.com/p/blockly/wiki/Turn');
     this.setColour(290);
     this.appendDummyInput()
-        .appendTitle(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');
+        .appendTitle(new Blockly.FieldDropdown(this.DIRECTIONS), 'DIR');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip(BlocklyApps.getMsg('Maze_turnTooltip'));
@@ -72,21 +75,26 @@ Blockly.JavaScript.maze_turn = function() {
   return 'Maze.' + dir + '(\'block_id_' + this.id + '\');\n';
 };
 
+
 Blockly.Blocks.maze_if = {
   // Block for 'if' conditional if there is a path.
+  DIRECTIONS: undefined,
+
   init: function() {
-    var DIRECTIONS =
+    if (!this.DIRECTIONS) {
+      this.DIRECTIONS =
         [[BlocklyApps.getMsg('Maze_pathAhead'), 'isPathForward'],
          [BlocklyApps.getMsg('Maze_pathLeft'), 'isPathLeft'],
          [BlocklyApps.getMsg('Maze_pathRight'), 'isPathRight']];
-    if (Maze.addArrows) {
-      // Append arrows to direction messages.
-      DIRECTIONS[1][0] += ' \u21BA';
-      DIRECTIONS[2][0] += ' \u21BB';
+      if (Maze.addArrows) {
+        // Append arrows to direction messages.
+        this.DIRECTIONS[1][0] += ' \u21BA';
+        this.DIRECTIONS[2][0] += ' \u21BB';
+      }
     }
     this.setColour(210);
     this.appendDummyInput()
-        .appendTitle(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');
+        .appendTitle(new Blockly.FieldDropdown(this.DIRECTIONS), 'DIR');
     this.appendStatementInput('DO')
         .appendTitle(BlocklyApps.getMsg('Maze_doCode'));
     this.setTooltip(BlocklyApps.getMsg('Maze_ifTooltip'));
@@ -107,19 +115,22 @@ Blockly.JavaScript.maze_if = function() {
 
 Blockly.Blocks.maze_ifElse = {
   // Block for 'if/else' conditional if there is a path.
+  DIRECTIONS: undefined,
   init: function() {
-    var DIRECTIONS =
-        [[BlocklyApps.getMsg('Maze_pathAhead'), 'isPathForward'],
-         [BlocklyApps.getMsg('Maze_pathLeft'), 'isPathLeft'],
-         [BlocklyApps.getMsg('Maze_pathRight'), 'isPathRight']];
-    if (Maze.addArrows) {
-      // Append arrows to direction messages.
-      DIRECTIONS[1][0] += ' \u27F2';
-      DIRECTIONS[2][0] += ' \u27F3';
+    if (!this.DIRECTIONS) {
+      this.DIRECTIONS =
+          [[BlocklyApps.getMsg('Maze_pathAhead'), 'isPathForward'],
+           [BlocklyApps.getMsg('Maze_pathLeft'), 'isPathLeft'],
+           [BlocklyApps.getMsg('Maze_pathRight'), 'isPathRight']];
+      if (Maze.addArrows) {
+        // Append arrows to direction messages.
+        this.DIRECTIONS[1][0] += ' \u27F2';
+        this.DIRECTIONS[2][0] += ' \u27F3';
+      }
     }
     this.setColour(210);
     this.appendDummyInput()
-        .appendTitle(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');
+        .appendTitle(new Blockly.FieldDropdown(this.DIRECTIONS), 'DIR');
     this.appendStatementInput('DO')
         .appendTitle(BlocklyApps.getMsg('Maze_doCode'));
     this.appendStatementInput('ELSE')
