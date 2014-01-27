@@ -36,7 +36,7 @@ BlocklyApps.LANGUAGES = {
   da: ['Dansk', 'ltr', 'msg/js/en.js'],
   de: ['Deutsch', 'ltr', 'msg/js/de.js'],
   el: ['Eλληνικά', 'ltr', 'msg/js/en.js'],
-  en: ['English', 'ltr', 'msg/js/en.js'],
+  en: ['English', 'ltr', 'msg/js/en_us.js'],
   es: ['Español', 'ltr', 'msg/js/en.js'],
   eu: ['Euskara', 'ltr', 'msg/js/en.js'],
   fr: ['Français', 'ltr', 'msg/js/en.js'],
@@ -498,8 +498,8 @@ Maze.init = function() {
        rtl: rtl,
        toolbox: toolbox,
        trashcan: true});
-  Blockly.loadAudio_(['apps/maze/win.mp3', 'apps/maze/win.ogg'], 'win');
-  Blockly.loadAudio_(['apps/maze/whack.mp3', 'apps/maze/whack.ogg'], 'whack');
+  Blockly.loadAudio_([Blockly.assetUrl('apps/maze/win.mp3'), Blockly.assetUrl('apps/maze/win.ogg')], 'win');
+  Blockly.loadAudio_([Blockly.assetUrl('apps/maze/whack.mp3'), Blockly.assetUrl('apps/maze/whack.ogg')], 'whack');
 
   Blockly.JavaScript.INFINITE_LOOP_TRAP = '  BlocklyApps.checkTimeout(%1);\n';
   Maze.drawMap();
