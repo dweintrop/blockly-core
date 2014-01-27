@@ -101,8 +101,8 @@ Blockly.parseOptions_ = function(options) {
     collapse: hasCollapse,
     readOnly: readOnly,
     maxBlocks: options['maxBlocks'] || Infinity,
-    assetUrl: options['assetUrl'] || function(path) {
-      return './' + path;
+    assetUrl: options['assetUrl'] || function(inPath) {
+      return options['path'] + inPath;
     },
     hasCategories: hasCategories,
     hasScrollbars: hasScrollbars,
