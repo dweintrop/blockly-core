@@ -1,25 +1,9 @@
-Blockly Core
+DWeintrop's Blockly Core
 ============
 
-This is a fork of [Blockly](https://code.google.com/p/blockly/) an open source visual programming environment.
+This is a fork of [Code.org](https://github.com/code-dot-org/blockly-core)'s fork of [Blockly](https://code.google.com/p/blockly/) an open source visual programming environment. 
 
+This version seeks to develop new UI features supporting smoother graphical (block-based) to textual coding interactions.
 
-Install
-_________
-
-```
-git clone https://github.com/code-dot-org/blockly-core.git
-svn checkout http://closure-library.googlecode.com/svn/trunk/ closure-library-read-only
-cd blockly-core
-./build.py
-```
-
-__Note__: blockly-core/ and closure-library-read-only/ should be sibling directories.
-
-
-Usage
-__________
-
-- Open blockly-core/apps/index.html and select an app to play around with.
-- To run in debug/dev mode, find where the specific app you're working on sources `blockly_compressed.js` and change it to `blockly_uncompressed.js` (eg, /maze/template.soy). If that is in a .soy file, make sure to recompile the template. Instructions for recompiling templates are usually at the top of the template.
+For additional informaion on [Blockly](https://code.google.com/p/blockly/) or [Code.org](https://github.com/code-dot-org/blockly-core)'s version (including installation and configuration issues), please refer to their respective pages. For more information about [code.org](http://code.org/), their [mission](http://code.org/promote), and their [learning](http://code.org/learn) and [partnering](http://code.org/educate/districts) opportunities please visit their website.
 
