@@ -38,8 +38,11 @@ BlocklyApps.LANGUAGES = {
 };
 BlocklyApps.LANG = BlocklyApps.getLang();
 
-document.write('<script type="text/javascript" src="generated/' +
-               BlocklyApps.LANG + '.js"></script>\n');
+/*
+ * COMMENTED OUT FOR BLOCKS2TEXT DEVELOPMENT
+ */
+// document.write('<script type="text/javascript" src="generated/' +
+//                BlocklyApps.LANG + '.js"></script>\n');
 
 Turtle.HEIGHT = 400;
 Turtle.WIDTH = 400;
