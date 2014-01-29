@@ -22,6 +22,10 @@ html[dir="RTL"] button.primary {
   position: fixed;
   bottom: 10px;
 }
+#textly {
+  position: fixed;
+  bottom: 10px;
+}
 #display {
   border: 1px solid #ccc;
 }
