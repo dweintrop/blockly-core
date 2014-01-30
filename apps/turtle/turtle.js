@@ -98,6 +98,7 @@ Turtle.init = function() {
 
     textlyDiv.style.cssText = blocklyDiv.style.cssText;
     textlyDiv.style.top = (blocklyDiv.scrollHeight + 100) + 'px';
+    textlyDiv.style.overflow = 'auto';
   };
   window.addEventListener('scroll', function() {
       onresize();

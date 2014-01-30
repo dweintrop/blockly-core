@@ -8,29 +8,31 @@
 goog.provide('Textly');
 
 // Closure dependencies.
+goog.require('goog.cssom');
 goog.require('goog.dom');
+goog.require('goog.events');
+goog.require('goog.editor.SeamlessField');
 
 Textly.init = function() {
-	// Builder simple UI
-	var textlyDiv = document.getElementById('textly')
-	goog.dom.appendChild(textlyDiv, goog.dom.createDom('div', null, 'raw js:'));
-	var uglyDiv = goog.dom.createDom('div', {'id':'uglyCodeDiv', 'style':'padding:8px;'});
-	goog.dom.appendChild(textlyDiv, uglyDiv);
-
-	goog.dom.appendChild(textlyDiv, goog.dom.createDom('p', null, 'Pretty js:'));
-	var prettyPre = goog.dom.createDom('pre', {'id':'prettyCodePre', 'style':'padding:8px;'});
-	goog.dom.appendChild(textlyDiv, prettyPre);
 }
 
+
 Textly.update = function() {
-	var uglyCodeDiv = document.getElementById('uglyCodeDiv')
+	var rawjsDiv = document.getElementById('rawjsDiv')
 	var code = Blockly.Generator.workspaceToCode('JavaScript');
-	uglyCodeDiv.innerHTML = code;
+	rawjsDiv.innerHTML = code;
 	
+	var editableRawjsDiv = new goog.editor.SeamlessField('rawjsDiv');
+  editableRawjsDiv.makeEditable();
+
 	var prettyCode = BlocklyApps.stripCode(code);
 	if (typeof prettyPrintOne == 'function') {
     prettyCode = prettyPrintOne(prettyCode, 'js');
   } 
   var prettyCodePre = document.getElementById('prettyCodePre');
   prettyCodePre.innerHTML = prettyCode;
+
+	var editablePrettyCodePre = new goog.editor.SeamlessField('prettyCodePre');
+	// editablePrettyCodePre.setIframeableCss(editablePrettyCodePre.getIframeableCss() + goog.cssom.getAllCssText('../apps/prettify.css'));
+  editablePrettyCodePre.makeEditable();
 }
