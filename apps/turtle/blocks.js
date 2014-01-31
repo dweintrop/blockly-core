@@ -26,6 +26,7 @@
 // Extensions to Blockly's language and JavaScript generator.
 
 Blockly.JavaScript = Blockly.Generator.get('JavaScript');
+Blockly.Python = Blockly.Generator.get('Python');
 
 Blockly.Blocks.draw_move = {
   // Block for moving forward or backwards.
@@ -52,6 +53,13 @@ Blockly.JavaScript.draw_move = function() {
       '(' + value + ', \'block_id_' + this.id + '\');\n';
 };
 
+Blockly.Python.draw_move = function() {
+  // Generate JavaScript for moving forward or backwards.
+  var value = Blockly.Python.valueToCode(this, 'VALUE',
+      Blockly.Python.ORDER_NONE) || '0';
+  return 'Turtle.' + this.getTitleValue('DIR') +
+      '(' + value + ', \'block_id_' + this.id + '\')\n';
+};
 
 Blockly.Blocks.draw_turn = {
   // Block for turning left or right.
@@ -78,6 +86,14 @@ Blockly.JavaScript.draw_turn = function() {
       '(' + value + ', \'block_id_' + this.id + '\');\n';
 };
 
+Blockly.Python.draw_turn = function() {
+  // Generate Python for turning left or right.
+  var value = Blockly.Python.valueToCode(this, 'VALUE',
+      Blockly.Python.ORDER_NONE) || '0';
+  return 'Turtle.' + this.getTitleValue('DIR') +
+      '(' + value + ', \'block_id_' + this.id + '\')\n';
+};
+
 Blockly.Blocks.draw_width = {
   // Block for setting the width.
   init: function() {
@@ -96,6 +112,13 @@ Blockly.JavaScript.draw_width = function() {
   var width = Blockly.JavaScript.valueToCode(this, 'WIDTH',
       Blockly.JavaScript.ORDER_NONE) || '1';
   return 'Turtle.penWidth(' + width + ', \'block_id_' + this.id + '\');\n';
+};
+
+Blockly.Python.draw_width = function() {
+  // Generate Python for setting the width.
+  var width = Blockly.Python.valueToCode(this, 'WIDTH',
+      Blockly.Python.ORDER_NONE) || '1';
+  return 'Turtle.penWidth(' + width + ', \'block_id_' + this.id + '\')\n';
 };
 
 Blockly.Blocks.draw_pen = {
@@ -120,6 +143,12 @@ Blockly.JavaScript.draw_pen = function() {
       '(\'block_id_' + this.id + '\');\n';
 };
 
+Blockly.Python.draw_pen = function() {
+  // Generate Python for pen up/down.
+  return 'Turtle.' + this.getTitleValue('PEN') +
+      '(\'block_id_' + this.id + '\')\n';
+};
+
 Blockly.Blocks.draw_colour = {
   // Block for setting the colour.
   init: function() {
@@ -139,6 +168,14 @@ Blockly.JavaScript.draw_colour = function() {
       Blockly.JavaScript.ORDER_NONE) || '\'#000000\'';
   return 'Turtle.penColour(' + colour + ', \'block_id_' +
       this.id + '\');\n';
+};
+
+Blockly.Python.draw_colour = function() {
+  // Generate Python for setting the colour.
+  var colour = Blockly.Python.valueToCode(this, 'COLOUR',
+      Blockly.Python.ORDER_NONE) || '\'#000000\'';
+  return 'Turtle.penColour(' + colour + ', \'block_id_' +
+      this.id + '\')\n';
 };
 
 Blockly.Blocks.turtle_visibility = {
@@ -163,6 +200,12 @@ Blockly.JavaScript.turtle_visibility = function() {
       '(\'block_id_' + this.id + '\');\n';
 };
 
+Blockly.Python.turtle_visibility = function() {
+  // Generate Python for changing turtle visibility.
+  return 'Turtle.' + this.getTitleValue('VISIBILITY') +
+      '(\'block_id_' + this.id + '\')\n';
+};
+
 Blockly.Blocks.draw_print = {
   // Block for printing text.
   init: function() {
@@ -182,6 +225,14 @@ Blockly.JavaScript.draw_print = function() {
       Blockly.JavaScript.ORDER_NONE) || '\'\'');
   return 'Turtle.drawPrint(' + argument0 + ', \'block_id_' +
       this.id + '\');\n';
+};
+
+Blockly.Python.draw_print = function() {
+  // Generate Python for printing text.
+  var argument0 = String(Blockly.Python.valueToCode(this, 'TEXT',
+      Blockly.Python.ORDER_NONE) || '\'\'');
+  return 'Turtle.drawPrint(' + argument0 + ', \'block_id_' +
+      this.id + '\')\n';
 };
 
 Blockly.Blocks.draw_font = {
@@ -222,4 +273,12 @@ Blockly.JavaScript.draw_font = function() {
       Number(this.getTitleValue('FONTSIZE')) + ',\'' +
       this.getTitleValue('FONTSTYLE') + '\', \'block_id_' +
       this.id + '\');\n';
+};
+
+Blockly.Python.draw_font = function() {
+  // Generate Python for setting the font.
+  return 'Turtle.drawFont(\'' + this.getTitleValue('FONT') + '\',' +
+      Number(this.getTitleValue('FONTSIZE')) + ',\'' +
+      this.getTitleValue('FONTSTYLE') + '\', \'block_id_' +
+      this.id + '\')\n';
 };

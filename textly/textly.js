@@ -72,11 +72,12 @@ Textly.updatePython = function () {
 	Textly.active_listener = Textly.updatePython;
 	var outputDiv = document.getElementById('content_python')
   var code = Blockly.Generator.workspaceToCode('Python');
-  outputDiv.textContent = code;
+  var prettyCode = BlocklyApps.stripCode(code);
+  outputDiv.textContent = prettyCode;
   if (typeof prettyPrintOne == 'function') {
-    code = outputDiv.innerHTML;
-    code = prettyPrintOne(code, 'py');
-    outputDiv.innerHTML = code;
+    prettyCode = outputDiv.innerHTML;
+    prettyCode = prettyPrintOne(prettyCode, 'py');
+    outputDiv.innerHTML = prettyCode;
   }
 }
 
