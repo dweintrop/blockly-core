@@ -85,7 +85,6 @@ Turtle.init = function() {
     return null;
   });
   var blocklyDiv = document.getElementById('blockly');
-  var textlyDiv = document.getElementById('textly');
   var visualization = document.getElementById('visualization');
   var onresize = function(e) {
     var top = visualization.offsetTop;
@@ -96,9 +95,8 @@ Turtle.init = function() {
     //TEMP: fix the height for side-by-side work
     blocklyDiv.style.height = ( (window.innerHeight - 100) / 2) + 'px';
 
-    textlyDiv.style.cssText = blocklyDiv.style.cssText;
-    textlyDiv.style.top = (blocklyDiv.scrollHeight + 100) + 'px';
-    textlyDiv.style.overflow = 'auto';
+    Textly.resize(blocklyDiv);
+
   };
   window.addEventListener('scroll', function() {
       onresize();
@@ -121,10 +119,10 @@ Turtle.init = function() {
 
   var defaultXml =
       '<xml>' +
-      '  <block type="draw_move" x="170" y="170">' +
+      '  <block type="draw_move" x="11" y="11">' +
       '    <value name="VALUE">' +
       '      <block type="math_number">' +
-      '        <title name="NUM">501</title>' +
+      '        <title name="NUM">11</title>' +
       '      </block>' +
       '    </value>' +
       '  </block>' +

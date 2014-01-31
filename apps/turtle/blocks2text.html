@@ -151,7 +151,8 @@
   <script type="text/javascript" src="../../blocks/procedures.js"></script>
   <script type="text/javascript" src="../../blocks/text.js"></script>
   <script type="text/javascript" src="../../blocks/variables.js"></script>
-<script type="text/javascript" src="../../javascript_compressed.js"></script>
+  <script type="text/javascript" src="../../javascript_compressed.js"></script>
+  <script type="text/javascript" src="../../python_compressed.js"></script>
 
 
  <script type="text/javascript" src="../../textly/textly.js"></script>
@@ -171,19 +172,120 @@
 <div id="blockly">
 </div>
 
-<div id="textly" style="position:fixed;overflow:auto;">
+
+<!-- TEXTLY STUFF - SOME OF WHICH IS CRIBBED FROM THE CODE APP -->
+
+<style type="text/css">
+/* Tabs */
+#tabRow>td {
+  border: 1px solid #ccc;
+}
+td.tabon {
+  border-bottom-color: #ddd !important;
+  background-color: #ddd;
+  padding: 5px 19px;
+}
+td.taboff {
+  cursor: pointer;
+  padding: 5px 19px;
+}
+td.taboff:hover {
+  background-color: #eee;
+}
+td.tabmin {
+  border-top-style: none !important;
+  border-left-style: none !important;
+  border-right-style: none !important;
+}
+td.tabmax {
+  border-top-style: none !important;
+  border-left-style: none !important;
+  border-right-style: none !important;
+  width: 99%;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: right;
+}
+html[dir=rtl] td.tabmax {
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+td {
+  padding: 0;
+  vertical-align: top;
+}
+.content {
+  visibility: hidden;
+  margin: 0;
+  padding: 1ex;
+  position: absolute;
+}
+pre.content {
+  overflow: auto;
+}
+#content_blocks {
+  padding: 0;
+}
+.blocklySvg {
+  border-top: none !important;
+}
+#content_xml {
+  resize: none;
+  outline: none;
+  border: none;
+  font-family: monospace;
+  overflow: auto;
+}
+#languageMenu {
+  vertical-align: top;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+</style>
 
 
-<div>raw js:</div>
-  <div id="rawjsDiv" style="padding: 8px; line-height: 0;">
-   
-  </div>
-  
-<p>Pretty js:</p>
-  <div id="prettyCode" style="padding: 8px;">
-  </div>
+<div id="textly" style="position:fixed;">
 
+  <table width="100%">
+    <tr id="tabRow" height="16px;">
+      <td id="tab_javascript" class="tabon" onclick="Textly.code.tabClick(this.id)">JavaScript</td>
+      <td class="tabmin">&nbsp;</td>
+      <td id="tab_python" class="taboff" onclick="Textly.code.tabClick(this.id)">Python</td>
+      <td class="tabmin">&nbsp;</td>
+      <td id="tab_xml" class="taboff" onclick="Textly.code.tabClick(this.id)">XML</td>
+    </tr>
+  </table>
+
+  <pre id="content_javascript" class="content"></pre>
+  <pre id="content_python" class="content"></pre>
+  <textarea id="content_xml" class="content" wrap="off"></textarea>
+
+
+
+
+<!--
+<div id="buttonRow">
+  <input type="button" onclick="Textly.updateRawJS();" value="Raw JS">
+  <input type="button" onclick="Textly.updatePrettyJS();" value="Pretty JS">
+  <input type="button" onclick="Textly.updatePrettyJSUpdate();" value="Editable Pretty JS">
+  <input type="button" onclick="Textly.updatePython();" value="Python">
+  <input type="button" onclick="Textly.updateXml();" value="XML">
 </div>
+
+<pre>
+<div id="textly-output" style="padding: 8px;">
+</div>
+</pre>
+
+-->
+
+
 
  <!-- apps.dialog(null, null, opt_ijData) -->
  <div id="dialogShadow" class="dialogAnimate"></div>
