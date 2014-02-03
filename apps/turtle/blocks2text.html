@@ -129,9 +129,6 @@
   </tr>
 </table>
 <div id="toolbarDiv">
-  <button class="notext" title="See generated JavaScript code." onclick="BlocklyApps.showCode(this);">
-    <img src='../../media/1x1.gif' class="code icon21">
-  </button>
   <button id="linkButton" class="notext" title="Save and link to blocks." onclick="BlocklyStorage.link();">
     <img src='../../media/1x1.gif' class="link icon21">
   </button>
@@ -256,6 +253,8 @@ pre.content {
     <tr id="tabRow" height="16px;">
       <td id="tab_javascript" class="tabon" onclick="Textly.code.tabClick(this.id)">JavaScript</td>
       <td class="tabmin">&nbsp;</td>
+      <td id="tab_editablejavascript" class="taboff" onclick="Textly.code.tabClick(this.id)">Editable JavaScript</td>
+      <td class="tabmin">&nbsp;</td>
       <td id="tab_python" class="taboff" onclick="Textly.code.tabClick(this.id)">Python</td>
       <td class="tabmin">&nbsp;</td>
       <td id="tab_xml" class="taboff" onclick="Textly.code.tabClick(this.id)">XML</td>
@@ -263,47 +262,10 @@ pre.content {
   </table>
 
   <pre id="content_javascript" class="content"></pre>
+  <pre id="content_editablejavascript" class="content"></pre>
   <pre id="content_python" class="content"></pre>
   <textarea id="content_xml" class="content" wrap="off"></textarea>
-
-
-
-
-<!--
-<div id="buttonRow">
-  <input type="button" onclick="Textly.updateRawJS();" value="Raw JS">
-  <input type="button" onclick="Textly.updatePrettyJS();" value="Pretty JS">
-  <input type="button" onclick="Textly.updatePrettyJSUpdate();" value="Editable Pretty JS">
-  <input type="button" onclick="Textly.updatePython();" value="Python">
-  <input type="button" onclick="Textly.updateXml();" value="XML">
 </div>
-
-<pre>
-<div id="textly-output" style="padding: 8px;">
-</div>
-</pre>
-
--->
-
-
-
- <!-- apps.dialog(null, null, opt_ijData) -->
- <div id="dialogShadow" class="dialogAnimate"></div>
- <div id="dialogBorder"></div>
- <div id="dialog"></div>
- <!-- end - apps.dialog(null, null, opt_ijData) -->
-
-<!-- apps.codeDialog(null, null, opt_ijData) -->
-<div id="dialogCode" class="dialogHiddenContent">
-  <pre id="containerCode"></pre>
-
-  <!-- apps.ok(null, null, opt_ijData) -->
-  <div class="farSide" style="padding: 1ex 3ex 0">
-    <button class="secondary" onclick="BlocklyApps.hideDialog(true)">OK</button>
-  </div>
-  <!-- end - apps.ok(null, null, opt_ijData) -->
-</div>
-<!-- end - apps.codeDialog(null, null, opt_ijData) -->
 
 <!-- apps.storageDialog(null, null, opt_ijData) -->
 <div id="dialogStorage" class="dialogHiddenContent">

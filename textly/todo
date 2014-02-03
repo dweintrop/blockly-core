@@ -1,0 +1,14 @@
+todo:
+
+Must:
+ - make JS area updateable and have it re-prettify on key strokes
+ - make JS edits update blocks
+ 	 - this probably happens via JS -> xml -> blocks
+
+
+Low:
+ - moved the html inside the block div into its init function (to make for easier plug-and-play)
+ - explore code mirror -> is that a dependancy that is worth introducing?
+
+Other Ideas:
+ - think about a feature where clicking a block highlights the asscoiated lines of text
