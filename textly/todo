@@ -1,6 +1,16 @@
 todo:
 
-Must:
+** JS to blocks! **
+JS -> AST -> JSON -> XML -> Blocks
+    Or 
+JS -> AST -> JSON -> Blocks
+
+
+CodeMirror Approach:
+ - add Turtle commands to the language
+
+
+Seamless Field Approach:
  - make JS area updateable and have it re-prettify on key strokes
  - make JS edits update blocks
  	 - this probably happens via JS -> xml -> blocks

@@ -152,7 +152,15 @@
   <script type="text/javascript" src="../../python_compressed.js"></script>
 
 
- <script type="text/javascript" src="../../textly/textly.js"></script>
+ <!-- Textly lib -->
+  <script type="text/javascript" src="../../textly/textly.js"></script>
+ 
+ <!-- Code Mirror stuff -->
+  <script type="text/javascript" src="../../textly/lib/codemirror.js"></script>
+  <script type="text/javascript"  src="../../textly/lib/codemirror-js-mode.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../textly/lib/codemirror.css">
+
+  <script type="text/javascript"  src="../../textly/lib/esprima.js"></script>
 
 
 <!-- soy.$$escapeHtml(opt_ijData.langSrc) -->
@@ -251,9 +259,11 @@ pre.content {
 
   <table width="100%">
     <tr id="tabRow" height="16px;">
-      <td id="tab_javascript" class="tabon" onclick="Textly.code.tabClick(this.id)">JavaScript</td>
+      <td id="tab_javascript" class="taboff" onclick="Textly.code.tabClick(this.id)">JavaScript</td>
       <td class="tabmin">&nbsp;</td>
       <td id="tab_editablejavascript" class="taboff" onclick="Textly.code.tabClick(this.id)">Editable JavaScript</td>
+      <td class="tabmin">&nbsp;</td>
+      <td id="tab_codeMirror" class="tabon" onclick="Textly.code.tabClick(this.id)">Code Mirror</td>
       <td class="tabmin">&nbsp;</td>
       <td id="tab_python" class="taboff" onclick="Textly.code.tabClick(this.id)">Python</td>
       <td class="tabmin">&nbsp;</td>
@@ -264,6 +274,7 @@ pre.content {
   <pre id="content_javascript" class="content"></pre>
   <pre id="content_editablejavascript" class="content"></pre>
   <pre id="content_python" class="content"></pre>
+  <textarea id="content_codeMirror" class="content" wrap="off"></textarea>
   <textarea id="content_xml" class="content" wrap="off"></textarea>
 </div>
 
