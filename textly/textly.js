@@ -101,10 +101,9 @@ Textly.jsUpdated = function () {
 Textly.codeMirror = null;
 
 Textly.initializeCodeMirror = function () {
-	Textly.updater = Textly.updateCodeMirror;
 	var code = Blockly.Generator.workspaceToCode('JavaScript');
 	var prettyCode = BlocklyApps.stripCode(code);
-	var cmTextArea = document.getElementById('content_codeMirror');
+	var cmTextArea = document.getElementById('codeMirror-textArea');
 	cmTextArea.value = prettyCode;
 	Textly.codeMirror = CodeMirror.fromTextArea(cmTextArea, 
 		{
@@ -115,6 +114,10 @@ Textly.initializeCodeMirror = function () {
 }
 
 Textly.updateCodeMirror = function () {
+  Textly.updater = Textly.updateCodeMirror;
+  if (Textly.codeMirror == null) {
+    Textly.initializeCodeMirror();
+  }
 	var code = Blockly.Generator.workspaceToCode('JavaScript');
 	var prettyCode = BlocklyApps.stripCode(code);
 	Textly.codeMirror.setValue(prettyCode);
@@ -223,7 +226,7 @@ Textly.code.renderContent = function() {
   } else if (content.id == 'content_editablejavascript') {
   	Textly.initializeEditableJS();
   } else if (content.id == 'content_codeMirror') {
-  	Textly.initializeCodeMirror();
+  	Textly.updateCodeMirror();
   } else if (content.id == 'content_python') {
   	Textly.updatePython();
   }

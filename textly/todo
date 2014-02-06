@@ -20,5 +20,8 @@ Low:
  - moved the html inside the block div into its init function (to make for easier plug-and-play)
  - explore code mirror -> is that a dependancy that is worth introducing?
 
+Some day:
+ - add more than one shape to connectors (numbers are round; booleans are diamond; lists are puzzle-y; etc.)
+
 Other Ideas:
  - think about a feature where clicking a block highlights the asscoiated lines of text
