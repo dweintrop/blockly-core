@@ -6,15 +6,17 @@ JS -> AST -> JSON -> XML -> Blocks
 JS -> AST -> JSON -> Blocks
 
 
-CodeMirror Approach:
- - add Turtle commands to the language
+JS - Code Mirror Tab:
+ - add Turtle commands to the language so they propertly highlight
 
 
-Seamless Field Approach:
+JS - SeamlessField Tab:
  - make JS area updateable and have it re-prettify on key strokes
  - make JS edits update blocks
  	 - this probably happens via JS -> xml -> blocks
 
+XML Tab:
+ - add change listener to xml code mirror so it updates the workspace as edits are made
 
 Low:
  - moved the html inside the block div into its init function (to make for easier plug-and-play)

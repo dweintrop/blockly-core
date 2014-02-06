@@ -136,13 +136,25 @@ Textly.updatePython = function () {
   }
 }
 
+Textly.codeMirrorXml = null;
+
 Textly.updateXml = function () {
 	Textly.updater = Textly.updateXml;
-	var xmlTextarea = document.getElementById('content_xml');
+  if (Textly.codeMirrorXml == null) {
+    var cmTextArea = document.getElementById('codeMirror_xml');
+    Textly.codeMirrorXml = CodeMirror.fromTextArea(cmTextArea, 
+    {
+      mode: "xml",
+      lineNumbers: true,
+      tabSize: 2
+    });
+  }
+	// var xmlTextarea = document.getElementById('content_xml');
   var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
   var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-  xmlTextarea.value = xmlText;
-  xmlTextarea.focus();
+  Textly.codeMirrorXml.setValue(xmlText);
+  // xmlTextarea.value = xmlText;
+  // xmlTextarea.focus();
 }
 
 
@@ -167,8 +179,7 @@ Textly.code.selected = 'codeMirror';
 Textly.code.tabClick = function(id) {
   // If the XML tab was open, save and render the content.
   if (document.getElementById('tab_xml').className == 'tabon') {
-    var xmlTextarea = document.getElementById('content_xml');
-    var xmlText = xmlTextarea.value;
+    var xmlText = Textly.codeMirrorXml.getValue();
     var xmlDom = null;
     try {
       xmlDom = Blockly.Xml.textToDom(xmlText);

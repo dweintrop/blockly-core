@@ -84,7 +84,7 @@
     <td>
       <h1>
         <span id="title">
-          <a href="../index.html">Blockly</a> : Turtle Graphics
+          <a href="../index.html">Apps</a> : Turtle Graphics
         </span>
       </h1>
     </td>
@@ -158,6 +158,7 @@
  <!-- Code Mirror stuff -->
   <script type="text/javascript" src="../../textly/lib/codemirror.js"></script>
   <script type="text/javascript"  src="../../textly/lib/codemirror-js-mode.js"></script>
+  <script type="text/javascript"  src="../../textly/lib/codemirror-xml-mode.js"></script>
   <link rel="stylesheet" type="text/css" href="../../textly/lib/codemirror.css">
 
   <script type="text/javascript"  src="../../textly/lib/esprima.js"></script>
@@ -259,11 +260,11 @@ pre.content {
 
   <table width="100%">
     <tr id="tabRow" height="16px;">
-      <td id="tab_javascript" class="taboff" onclick="Textly.code.tabClick(this.id)">JavaScript</td>
+      <td id="tab_javascript" class="taboff" onclick="Textly.code.tabClick(this.id)">JS - Read Only</td>
       <td class="tabmin">&nbsp;</td>
-      <td id="tab_editablejavascript" class="taboff" onclick="Textly.code.tabClick(this.id)">Editable JavaScript</td>
+      <td id="tab_editablejavascript" class="taboff" onclick="Textly.code.tabClick(this.id)">JS - SeamlessField</td>
       <td class="tabmin">&nbsp;</td>
-      <td id="tab_codeMirror" class="tabon" onclick="Textly.code.tabClick(this.id)">Code Mirror</td>
+      <td id="tab_codeMirror" class="tabon" onclick="Textly.code.tabClick(this.id)">JS - Code Mirror</td>
       <td class="tabmin">&nbsp;</td>
       <td id="tab_python" class="taboff" onclick="Textly.code.tabClick(this.id)">Python</td>
       <td class="tabmin">&nbsp;</td>
@@ -274,8 +275,8 @@ pre.content {
   <pre id="content_javascript" class="content"></pre>
   <pre id="content_editablejavascript" class="content"></pre>
   <pre id="content_python" class="content"></pre>
-  <div id="content_codeMirror"><textarea id="codeMirror-textArea" class="content" wrap="off"></textarea></div>
-  <textarea id="content_xml" class="content" wrap="off"></textarea>
+  <div id="content_codeMirror" class="content" ><textarea id="codeMirror-textArea"></textarea></div>
+  <div id="content_xml" class="content" ><textarea id="codeMirror_xml"></textarea></div>
 </div>
 
 <!-- apps.storageDialog(null, null, opt_ijData) -->
