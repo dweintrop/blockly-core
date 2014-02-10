@@ -148,12 +148,26 @@
   <script type="text/javascript" src="../../blocks/procedures.js"></script>
   <script type="text/javascript" src="../../blocks/text.js"></script>
   <script type="text/javascript" src="../../blocks/variables.js"></script>
-  <script type="text/javascript" src="../../javascript_compressed.js"></script>
+  
+  <!-- <script type="text/javascript" src="../../javascript_compressed.js"></script> -->
+  <script type="text/javascript" src="../../generators/javascript.js"></script>
+  <script type="text/javascript" src="../../generators/javascript/colour.js"></script>
+  <script type="text/javascript" src="../../generators/javascript/lists.js"></script>
+  <script type="text/javascript" src="../../generators/javascript/logic.js"></script>
+  <script type="text/javascript" src="../../generators/javascript/loops.js"></script>
+  <script type="text/javascript" src="../../generators/javascript/math.js"></script>
+  <script type="text/javascript" src="../../generators/javascript/procedures.js"></script>
+  <script type="text/javascript" src="../../generators/javascript/text.js"></script>
+  <script type="text/javascript" src="../../generators/javascript/variables.js"></script>
+
+  
+
   <script type="text/javascript" src="../../python_compressed.js"></script>
 
 
  <!-- Textly lib -->
   <script type="text/javascript" src="../../textly/textly.js"></script>
+  <script type="text/javascript" src="../../textly/syntax.js"></script>
  
  <!-- Code Mirror stuff -->
   <script type="text/javascript" src="../../textly/lib/codemirror.js"></script>
@@ -161,7 +175,10 @@
   <script type="text/javascript"  src="../../textly/lib/codemirror-xml-mode.js"></script>
   <link rel="stylesheet" type="text/css" href="../../textly/lib/codemirror.css">
 
-  <script type="text/javascript"  src="../../textly/lib/esprima.js"></script>
+
+<!--  <script type="text/javascript"  src="../../textly/lib/esprima.js"></script> -->
+<!-- trying out acron as it is faster and has some code-tracking features that might be useful -->
+<script type="text/javascript"  src="../../textly/lib/acorn.js"></script>
 
 
 <!-- soy.$$escapeHtml(opt_ijData.langSrc) -->
@@ -275,7 +292,11 @@ pre.content {
   <pre id="content_javascript" class="content"></pre>
   <pre id="content_editablejavascript" class="content"></pre>
   <pre id="content_python" class="content"></pre>
-  <div id="content_codeMirror" class="content" ><textarea id="codeMirror-textArea"></textarea></div>
+  <div id="content_codeMirror" class="content" >
+    <button style="float:right;" onclick="Textly.Syntax.BlocksFromText(Textly.codeMirror.getValue(), Blockly.languageTree)
+">Blockify!</button>
+    <textarea id="codeMirror-textArea"></textarea>
+  </div>
   <div id="content_xml" class="content" ><textarea id="codeMirror_xml"></textarea></div>
 </div>
 

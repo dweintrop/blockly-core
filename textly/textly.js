@@ -20,7 +20,6 @@ Textly.init = function() {
 }
 
 Textly.update = function() {
-	console.log('updated');
 	Textly.updater();
 }
 
@@ -92,8 +91,6 @@ Textly.jsUpdated = function () {
     prettyCode = prettyPrintOne(prettyCode, 'js');
     Textly.editableJSDiv.setHtml(false, prettyCode, true);
   } 
-
-	console.log('js updated');
 }
 
 
@@ -101,10 +98,12 @@ Textly.jsUpdated = function () {
 Textly.codeMirror = null;
 
 Textly.initializeCodeMirror = function () {
-	var code = Blockly.Generator.workspaceToCode('JavaScript');
-	var prettyCode = BlocklyApps.stripCode(code);
+	
+  // var code = Blockly.Generator.workspaceToCode('JavaScript');
+	var code = Textly.Syntax.buildAST();
+
 	var cmTextArea = document.getElementById('codeMirror-textArea');
-	cmTextArea.value = prettyCode;
+	cmTextArea.value = code;
 	Textly.codeMirror = CodeMirror.fromTextArea(cmTextArea, 
 		{
 		  mode: "javascript",
@@ -118,9 +117,14 @@ Textly.updateCodeMirror = function () {
   if (Textly.codeMirror == null) {
     Textly.initializeCodeMirror();
   }
-	var code = Blockly.Generator.workspaceToCode('JavaScript');
-	var prettyCode = BlocklyApps.stripCode(code);
-	Textly.codeMirror.setValue(prettyCode);
+	
+    // var code = Blockly.Generator.workspaceToCode('JavaScript');
+  var code = Textly.Syntax.buildAST();
+	Textly.codeMirror.setValue(code);
+}
+
+Textly.parseJS = function() {
+  Textly.Syntax.BlocksFromText(Textly.codeMirror.getValue());
 }
 
 Textly.updatePython = function () {
