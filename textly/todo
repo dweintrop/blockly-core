@@ -4,6 +4,29 @@ todo:
 JS -> AST -> JSON -> XML -> Blocks
     Or 
 JS -> AST -> JSON -> Blocks
+		Or
+JS -> AST -> Blocks
+
+JS -> collection of syntax objects -> look-up assocaited workspace block -> create block -> add to workspace
+
+
+Attempted (and failed) approaches: (from most promising to worst)
+ - creating the AST peice-by-peice as the blocks are turned into text
+ 		pros: can add block id/type as part of AST (with acorn) thus more easily link text back to blocks
+ 		cons: they order in which the blocks are parsed does not match the actual AST of the resulting text
+
+ - maintain a map of what possible generated text snippets look like back to the block type that creates them
+ 		(problem: I think this requires re-rendering the entire palate on every change - maybe ok, but visually jarring)
+
+ - use the posotion of text (row/column) to figure out what the corresponding block is (not that cool - but mabye)
+ 		(problem: probably very brittle)
+
+ - create a struct of block type/id/x&y position that maps onto blocks and can link to AST (possibily via location)
+ 		(not sure how this solves all our problems)
+
+ - add block id to generated xml, and to AST then on edits go from AST -> XML -> blocks
+ 		(problem: this won't work for brand new text)
+
 
 
 JS - Code Mirror Tab:
