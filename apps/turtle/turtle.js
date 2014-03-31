@@ -95,7 +95,9 @@ Turtle.init = function() {
     //TEMP: fix the height for side-by-side work
     blocklyDiv.style.height = ( (window.innerHeight - 100) / 2) + 'px';
 
-    Textly.resize(blocklyDiv);
+
+    //TODO: make this a passed in configurable thing: isTextly
+    // Textly.resize(blocklyDiv);
 
   };
   window.addEventListener('scroll', function() {
@@ -134,8 +136,9 @@ Turtle.init = function() {
   Turtle.reset();
 
   // Hookup Textly listener
-  Textly.init();
-  Blockly.addChangeListener(Textly.update);
+  //TODO: make this a passed in configurable thing: isTextly
+  // Textly.init();
+  // Blockly.addChangeListener(Textly.update);
 
   // Lazy-load the syntax-highlighting.
   window.setTimeout(BlocklyApps.importPrettify, 1);
@@ -235,7 +238,7 @@ Turtle.runButtonClick = function() {
   resetButton.style.display = 'inline';
   document.getElementById('spinner').style.visibility = 'visible';
   Blockly.mainWorkspace.traceOn(true);
-  Turtle.execute();
+  Turtle.execute(Blockly.Generator.workspaceToCode('JavaScript'));
 };
 
 /**
@@ -253,11 +256,13 @@ Turtle.resetButtonClick = function() {
 /**
  * Execute the user's code.  Heaven help us...
  */
-Turtle.execute = function() {
+Turtle.execute = function(code) {
   BlocklyApps.log = [];
   BlocklyApps.ticks = 1000000;
 
-  var code = Blockly.Generator.workspaceToCode('JavaScript');
+  if (!code) {
+    var code = Blockly.Generator.workspaceToCode('JavaScript');
+  }
   try {
     eval(code);
   } catch (e) {
