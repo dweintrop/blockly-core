@@ -225,12 +225,14 @@
 
 
 <script>
+
+  var myCodeMirror;
+
   function init() {
     var cmTextArea = document.getElementById('codeMirror-textArea');
-    cmTextArea.value = "Turtle.moveForward(10);";
-    CodeMirror.fromTextArea(cmTextArea, 
+    myCodeMirror = CodeMirror.fromTextArea(cmTextArea, 
       {
-        mode: "javascript",
+        mode: "turtle",
         lineNumbers: true,
         tabSize: 2
       });
@@ -264,8 +266,7 @@
     runButton.style.display = 'none';
     resetButton.style.display = 'inline';
     document.getElementById('spinner').style.visibility = 'visible';
-    Blockly.mainWorkspace.traceOn(true);
-    Turtle.execute(document.getElementById('codeMirror-textArea').value);
+    Turtle.execute(myCodeMirror.getValue());
   }
 
   window.addEventListener('load', init);

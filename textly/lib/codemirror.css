@@ -2,7 +2,8 @@
 
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
-  font-family: monospace;
+  font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+  font-height: 14;
   height: 300px;
 }
 .CodeMirror-scroll {
@@ -16,7 +17,7 @@
   padding: 4px 0; /* Vertical padding around content */
 }
 .CodeMirror pre {
-  padding: 0 4px; /* Horizontal padding of content */
+  padding: 2px 4px; /* Horizontal padding of content */
 }
 
 .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
@@ -32,7 +33,7 @@
 }
 .CodeMirror-linenumbers {}
 .CodeMirror-linenumber {
-  padding: 0 3px 0 5px;
+  padding: 2px 3px 0 5px;
   min-width: 20px;
   text-align: right;
   color: #999;
@@ -65,13 +66,8 @@
 
 .cm-s-default .cm-keyword {color: #708;}
 .cm-s-default .cm-atom {color: #219;}
-.cm-s-default .cm-number {color: #164;}
 .cm-s-default .cm-def {color: #00f;}
-.cm-s-default .cm-variable {color: black;}
-.cm-s-default .cm-variable-2 {color: #05a;}
-.cm-s-default .cm-variable-3 {color: #085;}
 .cm-s-default .cm-property {color: black;}
-.cm-s-default .cm-operator {color: black;}
 .cm-s-default .cm-comment {color: #a50;}
 .cm-s-default .cm-string {color: #a11;}
 .cm-s-default .cm-string-2 {color: #f50;}
@@ -85,6 +81,22 @@
 .cm-s-default .cm-quote {color: #090;}
 .cm-s-default .cm-hr {color: #999;}
 .cm-s-default .cm-link {color: #00c;}
+
+
+/* Blockly Styles */
+.cm-s-default .cm-number {color: #77679e;}
+.cm-s-default .cm-turtle{color:#5ba68d;}
+.cm-s-default .cm-if{color:#5b80a6;}
+.cm-s-default .cm-loop{color:#f318a2;}
+.cm-s-default .cm-function{color:#509918;}
+.cm-s-default .cm-var{color:#bb97b4;}
+.cm-s-default .cm-variable {color: #bb97b4;}
+.cm-s-default .cm-variable-2 {color: #bb97b4;}
+.cm-s-default .cm-variable-3 {color: #bb97b4;}
+.cm-s-default .cm-bool{color:#0094ca;}
+.cm-s-default .cm-operator {color: #0094ca;}
+
+
 
 .cm-negative {color: #d44;}
 .cm-positive {color: #292;}

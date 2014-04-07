@@ -1,5 +1,10 @@
 todo:
 
+Resources:
+	acorn.js (http://marijnhaverbeke.nl/acorn/) - prefered JavaScript parser
+	esprima syntax tree demo: (http://esprima.org/demo/parse.html)
+	CodeMirror: http://codemirror.net/doc/manual.html
+
 ** JS to blocks! **
 JS -> AST -> JSON -> XML -> Blocks
     Or 
@@ -26,7 +31,6 @@ Attempted (and failed) approaches: (from most promising to worst)
 
  - add block id to generated xml, and to AST then on edits go from AST -> XML -> blocks
  		(problem: this won't work for brand new text)
-
 
 
 JS - Code Mirror Tab:

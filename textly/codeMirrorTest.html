@@ -1,0 +1,60 @@
+<script type="text/javascript" src="lib/codemirror.js"></script>
+<script type="text/javascript"  src="lib/codemirror-js-mode.js"></script>
+<script type="text/javascript"  src="lib/codemirror-turtle-mode.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/codemirror.css">
+
+Code Mirror Testing:
+<div id="codeMirrorWrapper" style="width:50%;border:1px solid;">
+  <textarea id="codeMirror-textArea">moveForward(11);
+var x = 10;
+if (x < 11){
+  moveBackward(10);
+}
+forward(12);</textarea>
+</div>
+
+<br/>
+<button onclick="compile()">Run2</button>
+<br/><br/>
+Output: <br/>
+<div id="output" style="border:1px solid;width:50%;padding:4px;">
+  <br/>
+</div>
+
+<style type="text/css">
+
+
+</style>
+
+<script>
+
+  var myCodeMirror;
+
+  function init() {
+    var cmTextArea = document.getElementById('codeMirror-textArea');
+    myCodeMirror = CodeMirror.fromTextArea(cmTextArea, 
+      {
+        mode: "turtle",
+        lineNumbers: true,
+        tabSize: 2
+      });
+  }
+
+  window.addEventListener('load', init);
+
+  function compile() {
+    var codeMirrorText = myCodeMirror.getValue();
+
+    // magic
+
+
+    var output = document.getElementById('output');
+    myCodeMirror.eachLine( function(line) {
+      output.appendChild(document.createTextNode(line.text));
+      console.log(line);
+    });
+
+    // document.getElementById('output').innerHTML = codeMirrorText;
+  }
+
+</script>
