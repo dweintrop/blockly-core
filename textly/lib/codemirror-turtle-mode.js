@@ -25,27 +25,12 @@ CodeMirror.defineMode("turtle", function(config, parserConfig) {
       "yield": C, "export": kw("export"), "import": kw("import"), "extends": C
     };
 
-    // override styles to match blockly
-    jsKeywords["if"].style = "if";
-    jsKeywords["else"].style = "if";
-    jsKeywords["while"].style = "loop";
-    jsKeywords["do"].style = "loop";
-    jsKeywords["for"].style = "loop";
-    jsKeywords["break"].style = "loop";
-    jsKeywords["continue"].style = "loop";
-    jsKeywords["var"].style = "var";
-    jsKeywords["return"].style = "function";
-    jsKeywords["function"].style = "function";
-    // jsKeywords["def"].style = "function";
-    jsKeywords["true"].style = "bool";
-    jsKeywords["false"].style = "bool";
-
-
     // Adding turtle-specific words
     function turtleKw(type, style, js) {return {type: type, style: "turtle", js: js};}
     var turtleKewords = {
       "moveForward": turtleKw("moveForward", "Turtle.Forward"),
-      "moveBackward": turtleKw("moveBackward", "Turtle.Backward")
+      "moveBackward": turtleKw("moveBackward", "Turtle.Backward"),
+      "repeat": turtleKw("repeat", "for (var c = 0; c < arg; c++)")
     };
 
     for (var attr in turtleKewords) {
@@ -75,6 +60,23 @@ CodeMirror.defineMode("turtle", function(config, parserConfig) {
         jsKeywords[attr] = tsKeywords[attr];
       }
     }
+
+
+    // override styles to match blockly
+    jsKeywords["if"].style = "if";
+    jsKeywords["else"].style = "if";
+    jsKeywords["while"].style = "loop";
+    jsKeywords["do"].style = "loop";
+    jsKeywords["for"].style = "loop";
+    jsKeywords["break"].style = "loop";
+    jsKeywords["continue"].style = "loop";
+    jsKeywords["var"].style = "var";
+    jsKeywords["return"].style = "function";
+    jsKeywords["function"].style = "function";
+    // jsKeywords["def"].style = "function";
+    jsKeywords["true"].style = "bool";
+    jsKeywords["false"].style = "bool";
+    jsKeywords["repeat"].style = "loop";
 
     return jsKeywords;
   }();
@@ -147,6 +149,8 @@ CodeMirror.defineMode("turtle", function(config, parserConfig) {
     } else {
       stream.eatWhile(/[\w\$_]/);
       var word = stream.current(), known = keywords.propertyIsEnumerable(word) && keywords[word];
+
+      //TODO: turtle translate here!
       return (known && state.lastType != ".") ? ret(known.type, known.style, word) :
                      ret("variable", "variable", word);
     }
