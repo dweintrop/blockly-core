@@ -25,16 +25,9 @@ CodeMirror.defineMode("turtle", function(config, parserConfig) {
       "yield": C, "export": kw("export"), "import": kw("import"), "extends": C
     };
 
-    // Adding turtle-specific words
-    function turtleKw(type, style, js) {return {type: type, style: "turtle", js: js};}
-    var turtleKewords = {
-      "moveForward": turtleKw("moveForward", "Turtle.Forward"),
-      "moveBackward": turtleKw("moveBackward", "Turtle.Backward"),
-      "repeat": turtleKw("repeat", "for (var c = 0; c < arg; c++)")
-    };
-
-    for (var attr in turtleKewords) {
-      jsKeywords[attr] = turtleKewords[attr];
+    var turtleKeywords = Textly.Lang.Turtle().codeMirrorStyles();
+    for (var attr in turtleKeywords) {
+      jsKeywords[attr] = turtleKeywords[attr];
     }
 
     // Extend the 'normal' keywords with the TypeScript language extensions

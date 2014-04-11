@@ -132,7 +132,12 @@
       <img id="spinner" style="visibility: hidden;" src="loading.gif" height=15 width=15>
     </td>
     <td style="width: 190px; text-align: center">
-      
+      <button id="runButton" class="primary" onclick="Turtle.runButtonClick();" title="Makes the turtle do what the blocks say.">
+        <img src="../../media/1x1.gif" class="run icon21">Run Blocks
+      </button>
+      <button id="resetButton" class="primary" onclick="Turtle.resetButtonClick();" style="display: none">
+        <img src="../../media/1x1.gif" class="stop icon21"> Reset
+      </button>
     </td>
   </tr>
 </table>
@@ -176,15 +181,12 @@
  
  <!-- Code Mirror stuff -->
   <script type="text/javascript" src="../../textly/lib/codemirror.js"></script>
-  <script type="text/javascript"  src="../../textly/lib/codemirror-js-mode.js"></script>
-  <script type="text/javascript"  src="../../textly/lib/codemirror-xml-mode.js"></script>
+  <script type="text/javascript"  src="../../textly/lib/codemirror-turtle-mode.js"></script>
+  <script type="text/javascript" src="../../textly/lib/esprima.js"></script>
+  <script type="text/javascript" src="../../textly/lib/escodegen.browser.js"></script>
+  <script type="text/javascript" src="../../textly/turtle-lang.js"></script>
+
   <link rel="stylesheet" type="text/css" href="../../textly/lib/codemirror.css">
-
-
-<!--  <script type="text/javascript"  src="../../textly/lib/esprima.js"></script> -->
-<!-- trying out acron as it is faster and has some code-tracking features that might be useful -->
-<script type="text/javascript"  src="../../textly/lib/acorn.js"></script>
-
 
 <!-- soy.$$escapeHtml(opt_ijData.langSrc) -->
 <script type="text/javascript" src="../../msg/js/en_us.js">
@@ -202,14 +204,19 @@
 </div>
 
 <div id="codeMirrorWrapper">
-  <button id="runButton" class="primary" onclick="runIt();" title="Makes the turtle do what the blocks say." style="position:fixed;left:83.5%;z-index:1;">
-    <img src="../../media/1x1.gif" class="run icon21">Run Program
+  <button id="runTextButton" class="primary" onclick="runText();" title="Makes the turtle do what the text says." style="position:fixed;left:86%;z-index:1;">
+    <img src="../../media/1x1.gif" class="run icon21">Run Text
   </button>
-  <button id="resetButton" class="primary" onclick="Turtle.resetButtonClick();" style="position:fixed;left:83.5%;display: none;z-index:1;">
+  <button id="resetTextButton" class="primary" onclick="textResetButtonClick();" style="position:fixed;left:86%;display: none;z-index:1;">
     <img src="../../media/1x1.gif" class="stop icon21"> Reset
   </button>
 
-  <textarea id="codeMirror-textArea"></textarea>
+  <textarea id="codeMirror-textArea">var c = 0;
+while (c < 44) {
+  moveForward(111);
+  turnRight(141);
+  c++;
+}</textarea>
 </div>
 
 <!-- apps.storageDialog(null, null, opt_ijData) -->
@@ -246,27 +253,36 @@
     codeMirrorWrapperDiv.style.position = 'fixed';
     codeMirrorWrapperDiv.style.top = (blocklyDiv.scrollHeight + 100) + 'px';
     codeMirrorWrapperDiv.style.overflow = 'auto';
-
-    var parentbBox = BlocklyApps.getBBox_(blocklyDiv);
-    var codeMirror = document.getElementById('codeMirror-textArea');
-    codeMirror.style.top = '28px';
-    codeMirror.style.height = parentbBox.height + 30 + 'px';
-    codeMirror.style.height = (2 * parentbBox.height - codeMirror.offsetHeight) + 'px';
-    codeMirror.style.width = parentbBox.width + 15 + 'px';
-    codeMirror.style.width = (2 * parentbBox.width - codeMirror.offsetWidth) + 'px'; 
   }
 
-  function runIt() {
-    var runButton = document.getElementById('runButton');
-    var resetButton = document.getElementById('resetButton');
+  function runText() {
+    var runTextButton = document.getElementById('runTextButton');
+    var resetTextButton = document.getElementById('resetTextButton');
     // Ensure that Reset button is at least as wide as Run button.
-    if (!resetButton.style.minWidth) {
-      resetButton.style.minWidth = runButton.offsetWidth + 'px';
+    if (!resetTextButton.style.minWidth) {
+      resetTextButton.style.minWidth = runTextButton.offsetWidth + 'px';
     }
-    runButton.style.display = 'none';
-    resetButton.style.display = 'inline';
+    runTextButton.style.display = 'none';
+    resetTextButton.style.display = 'inline';
     document.getElementById('spinner').style.visibility = 'visible';
-    Turtle.execute(myCodeMirror.getValue());
+
+    var codeMirrorText = myCodeMirror.getValue();
+
+    var turtleCode = escodegen.generate(esprima.parse(codeMirrorText), {
+        identifierRewriteVisitor: Textly.Lang.Turtle().jsRewriteVisitor
+      });
+
+    console.log("running: " + turtleCode);
+
+    Turtle.execute(turtleCode);
+  }
+
+  function textResetButtonClick() {
+    document.getElementById('runTextButton').style.display = 'inline';
+    document.getElementById('resetTextButton').style.display = 'none';
+    document.getElementById('spinner').style.visibility = 'hidden';
+    Blockly.mainWorkspace.traceOn(false);
+    Turtle.reset();
   }
 
   window.addEventListener('load', init);

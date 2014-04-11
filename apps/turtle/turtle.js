@@ -95,9 +95,10 @@ Turtle.init = function() {
     //TEMP: fix the height for side-by-side work
     blocklyDiv.style.height = ( (window.innerHeight - 100) / 2) + 'px';
 
-
     //TODO: make this a passed in configurable thing: isTextly
-    // Textly.resize(blocklyDiv);
+    if (Textly && Textly.resize) {
+      Textly.resize(blocklyDiv);
+    }
 
   };
   window.addEventListener('scroll', function() {
@@ -137,8 +138,10 @@ Turtle.init = function() {
 
   // Hookup Textly listener
   //TODO: make this a passed in configurable thing: isTextly
-  // Textly.init();
-  // Blockly.addChangeListener(Textly.update);
+  if (Textly && Textly.init) {
+    Textly.init();
+    Blockly.addChangeListener(Textly.update);
+  }
 
   // Lazy-load the syntax-highlighting.
   window.setTimeout(BlocklyApps.importPrettify, 1);
@@ -238,6 +241,7 @@ Turtle.runButtonClick = function() {
   resetButton.style.display = 'inline';
   document.getElementById('spinner').style.visibility = 'visible';
   Blockly.mainWorkspace.traceOn(true);
+  console.log(Blockly.Generator.workspaceToCode('JavaScript'));
   Turtle.execute(Blockly.Generator.workspaceToCode('JavaScript'));
 };
 

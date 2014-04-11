@@ -5,6 +5,9 @@
  -->
 <script type="text/javascript" src="lib/esprima.js"></script>
 <script type="text/javascript" src="lib/escodegen.browser.js"></script>
+
+<script type="text/javascript" src="turtle-lang.js"></script>
+
 <script type="text/javascript"  src="lib/codemirror-js-mode.js"></script>
 <script type="text/javascript"  src="lib/codemirror-turtle-mode.js"></script>
 <link rel="stylesheet" type="text/css" href="lib/codemirror.css">
@@ -50,75 +53,18 @@ Output: <br/>
 
   window.addEventListener('load', init);
 
-  function compile_cm() {
-    var codeMirrorText = myCodeMirror.getValue();
-
-    // magic
-
-    var output = document.getElementById('output');
-    myCodeMirror.eachLine( function(line) {
-      var outText = myCodeMirror.getMode().turtleToJS(line.text);
-      output.appendChild(document.createTextNode(outText));
-      console.log(line);
-    });
-
-    // document.getElementById('output').innerHTML = codeMirrorText;
-  }
-
-  function compile_acorn() {
-    var codeMirrorText = myCodeMirror.getValue();
-    var tokener = acorn.tokenize(codeMirrorText);
-    var blah;
-    while (blah = tokener()) {
-      console.log(blah)
-    }
-
-
-
-  // walk.simple(acorn.parse(codeMirrorText), {
-  //   Expression: function(node) { 
-  //     if (node.type == "Identifier") {
-  //       console.log(node.name);
-  //     } else {
-  //       console.log(node.value) 
-  //     }
-  //   }
-  // });
-
-    // document.getElementById('output').innerHTML = codeMirrorText;
-  }
-
   var TurtleLanguage = {
     'moveForward' : { js : 'Turtle.moveForward'}
   };
-  
 
   function compile_esprima() {
     var codeMirrorText = myCodeMirror.getValue();
 
-    var turtleCode = "", token;
-
-    var parsed = esprima.parse(codeMirrorText, {'tokens': true});
-    for (i = 0; i < parsed.tokens.length; i++) {
-        token = parsed.tokens[i].value;
-        if (TurtleLanguage[token]) {
-          turtleCode += TurtleLanguage[token].js
-        } else {
-          turtleCode += token;
-        }
-    }
-
-    turtleCode = escodegen.generate(esprima.parse(codeMirrorText), {identifierRewriteVisitor: function(generated) {
-      if (generated == "moveForward") {
-        return "Turtle.moveForward";
-      } else {
-        return generated;
-      }
-     }});
+    var turtleCode = escodegen.generate(esprima.parse(codeMirrorText), {
+        identifierRewriteVisitor: Textly.Lang.Turtle().jsRewriteVisitor
+      });
 
     document.getElementById('output').innerHTML = turtleCode;
   }
    
-
-
 </script>
