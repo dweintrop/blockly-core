@@ -213,6 +213,7 @@
 
   <textarea id="codeMirror-textArea">var c = 0;
 while (c < 44) {
+  setColor(randomColor);
   moveForward(111);
   turnRight(141);
   c++;
@@ -268,9 +269,11 @@ while (c < 44) {
 
     var codeMirrorText = myCodeMirror.getValue();
 
-    var turtleCode = escodegen.generate(esprima.parse(codeMirrorText), {
-        identifierRewriteVisitor: Textly.Lang.Turtle().jsRewriteVisitor
-      });
+    // var turtleCode = escodegen.generate(esprima.parse(codeMirrorText), {
+    //     identifierRewriteVisitor: Textly.Lang.Turtle().jsRewriteVisitor
+    //   });
+
+    var turtleCode = Textly.Lang.Turtle().rewrite(myCodeMirror.getValue());
 
     console.log("running: " + turtleCode);
 

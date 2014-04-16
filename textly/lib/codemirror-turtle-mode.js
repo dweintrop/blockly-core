@@ -69,7 +69,6 @@ CodeMirror.defineMode("turtle", function(config, parserConfig) {
     // jsKeywords["def"].style = "function";
     jsKeywords["true"].style = "bool";
     jsKeywords["false"].style = "bool";
-    jsKeywords["repeat"].style = "loop";
 
     return jsKeywords;
   }();

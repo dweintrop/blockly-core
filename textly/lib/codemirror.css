@@ -95,7 +95,11 @@
 .cm-s-default .cm-variable-3 {color: #bb97b4;}
 .cm-s-default .cm-bool{color:#0094ca;}
 .cm-s-default .cm-operator {color: #0094ca;}
+.cm-s-default .cm-set-color {color: #c19e8c;}
+.cm-s-default .cm-color {color: #fdb91b;}
 
+/* Turtle Colors */
+.cm-s-default .cm-blue {color: #333fff;}
 
 
 .cm-negative {color: #d44;}

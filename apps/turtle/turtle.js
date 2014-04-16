@@ -120,16 +120,45 @@ Turtle.init = function() {
   var sliderSvg = document.getElementById('slider');
   Turtle.speedSlider = new Slider(10, 35, 130, sliderSvg);
 
-  var defaultXml =
-      '<xml>' +
-      '  <block type="draw_move" x="11" y="11">' +
-      '    <value name="VALUE">' +
-      '      <block type="math_number">' +
-      '        <title name="NUM">11</title>' +
-      '      </block>' +
-      '    </value>' +
-      '  </block>' +
-      '</xml>';
+  var defaultXml = 
+
+  '<xml xmlns="http://www.w3.org/1999/xhtml">' +
+  '<block type="controls_repeat_ext" inline="true">' +
+    '<value name="TIMES">' +
+      '<block type="math_number">' +
+        '<title name="NUM">44</title>' +
+      '</block>' +
+    '</value>' +
+    '<statement name="DO">' +
+      '<block type="draw_colour" inline="false">' +
+        '<value name="COLOUR">' +
+          '<block type="colour_random"></block>' +
+        '</value>' +
+        '<next>' +
+          '<block type="draw_move" inline="false">' +
+            '<title name="DIR">moveForward</title>' +
+            '<value name="VALUE">' +
+              '<block type="math_number">' +
+                '<title name="NUM">111</title>' +
+              '</block>' +
+            '</value>' +
+            '<next>' +
+              '<block type="draw_turn" inline="false">' +
+                '<title name="DIR">turnRight</title>' +
+                '<value name="VALUE">' +
+                  '<block type="math_number">' +
+                    '<title name="NUM">141</title>' +
+                  '</block>' +
+                '</value>' +
+              '</block>' +
+            '</next>' +
+          '</block>' +
+        '</next>' +
+      '</block>' +
+    '</statement>' +
+  '</block>' +
+'</xml>';
+
   BlocklyApps.loadBlocks(defaultXml);
 
   Turtle.ctxDisplay = document.getElementById('display').getContext('2d');
