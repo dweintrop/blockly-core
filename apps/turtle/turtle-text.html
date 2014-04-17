@@ -182,6 +182,7 @@
  <!-- Code Mirror stuff -->
   <script type="text/javascript" src="../../textly/lib/codemirror.js"></script>
   <script type="text/javascript"  src="../../textly/lib/codemirror-turtle-mode.js"></script>
+  <script type="text/javascript"  src="../../textly/lib/matchbrackets.js"></script>
   <script type="text/javascript" src="../../textly/lib/esprima.js"></script>
   <script type="text/javascript" src="../../textly/lib/escodegen.browser.js"></script>
   <script type="text/javascript" src="../../textly/turtle-lang.js"></script>
@@ -242,7 +243,8 @@ while (c < 44) {
       {
         mode: "turtle",
         lineNumbers: true,
-        tabSize: 2
+        tabSize: 2,
+        matchBrackets: true
       });
   }
 
