@@ -90,10 +90,65 @@ Textly.Lang.TurtleKeywords = {
       style: "color",
       supportCode: "function __colour_rgb(r, g, b) { r = Math.round(Math.max(Math.min(Number(r), 100), 0) * 2.55); g = Math.round(Math.max(Math.min(Number(g), 100), 0) * 2.55); b = Math.round(Math.max(Math.min(Number(b), 100), 0) * 2.55); r = ('0' + (r || 0).toString(16)).slice(-2); g = ('0' + (g || 0).toString(16)).slice(-2); b = ('0' + (b || 0).toString(16)).slice(-2); return '#' + r + g + b;}"
     }),
+    aqua: Textly.Lang.TurtleKeyword({
+      keyword: "aqua",
+      js:"\'#00FFFF\'",
+      style: "aqua"
+    }),
+    black: Textly.Lang.TurtleKeyword({
+      keyword: "black",
+      js:"\'#000000\'",
+      style: "black"
+    }),
     blue: Textly.Lang.TurtleKeyword({
       keyword: "blue",
-      js:"\'#3333ff\'",
+      js:"\'#0000ff\'",
       style: "blue"
+    }),
+    brown: Textly.Lang.TurtleKeyword({
+      keyword: "brown",
+      js:"\'#a52a2a\'",
+      style: "brown"
+    }),
+    gray: Textly.Lang.TurtleKeyword({
+      keyword: "grey",
+      js:"\'#808080\'",
+      style: "grey"
+    }),
+    green: Textly.Lang.TurtleKeyword({
+      keyword: "green",
+      js:"\'#008000\'",
+      style: "green"
+    }),
+    orange: Textly.Lang.TurtleKeyword({
+      keyword: "orange",
+      js:"\'#ffa500\'",
+      style: "orange"
+    }),
+    pink: Textly.Lang.TurtleKeyword({
+      keyword: "pink",
+      js:"\'#ffc0cb\'",
+      style: "pink"
+    }),
+    purple: Textly.Lang.TurtleKeyword({
+      keyword: "purple",
+      js:"\'#800080\'",
+      style: "purple"
+    }),
+    red: Textly.Lang.TurtleKeyword({
+      keyword: "red",
+      js:"\'#ff0000\'",
+      style: "red"
+    }),
+    white: Textly.Lang.TurtleKeyword({
+      keyword: "white",
+      js:"\'#ffffff\'",
+      style: "black"
+    }),
+    yellow: Textly.Lang.TurtleKeyword({
+      keyword: "yellow",
+      js:"\'#ffff00\'",
+      style: "yellow"
     }),
     randomColor: Textly.Lang.TurtleKeyword({
       keyword: "randomColor",

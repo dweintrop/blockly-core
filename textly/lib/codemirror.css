@@ -99,7 +99,17 @@
 .cm-s-default .cm-color {color: #fdb91b;}
 
 /* Turtle Colors */
-.cm-s-default .cm-blue {color: #333fff;}
+.cm-s-default .cm-aqua {color: #00FFFF;}
+.cm-s-default .cm-black {color: #000000;}
+.cm-s-default .cm-blue {color: #000fff;}
+.cm-s-default .cm-brown {color: #a52a2a;}
+.cm-s-default .cm-grey {color: #808080;}
+.cm-s-default .cm-green {color: #008000;}
+.cm-s-default .cm-orange {color: #ffa500;}
+.cm-s-default .cm-pink {color: #ffc0cb;}
+.cm-s-default .cm-purple {color: #800080;}
+.cm-s-default .cm-red {color: #ff0000;}
+.cm-s-default .cm-yellow {color: #ffff00;}
 
 
 .cm-negative {color: #d44;}
