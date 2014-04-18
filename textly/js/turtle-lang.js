@@ -155,8 +155,36 @@ Textly.Lang.TurtleKeywords = {
       js: "__colour_random()",
       style: "color",
       supportCode: "function __colour_random() { var num = Math.floor(Math.random() * Math.pow(2, 24)); return '#' + ('00000' + num.toString(16)).substr(-6);}"
+    }),
+
+    //Logic
+    and: Textly.Lang.TurtleKeyword({
+      keyword: "and",
+      js:"&&",
+      style: "bool"
+    }),
+    or: Textly.Lang.TurtleKeyword({
+      keyword: "or",
+      js:"||",
+      style: "bool"
     })
   };
+
+
+// macros with sweet.js
+// macro and {
+//   rule infix {
+//     $lhs:expr | $rhs:expr
+//   } => {
+//     $lhs && $rhs
+//   }
+// }
+
+// macro fd {
+//   rule {} => {Turtle.forward}
+//   }
+
+
 
 Textly.Lang.Turtle = function () {
 
@@ -191,7 +219,6 @@ Textly.Lang.Turtle = function () {
           supportCode += " " + Textly.Lang.TurtleKeywords[keyword].getSupportCode(); 
         }
       }
-
 
       return supportCode + ' ' + rewrittenText;
     },
