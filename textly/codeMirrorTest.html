@@ -2,9 +2,12 @@
 <!-- 
 <script type="text/javascript" src="js/lib/acorn.js"></script>
 <script type="text/javascript" src="js/lib/acorn-walker.js"></script>
+
+<script type="text/javascript" src="js/lib/sweet_browser.js"></script>
  -->
 <script type="text/javascript" src="js/lib/esprima.js"></script>
 <script type="text/javascript" src="js/lib/escodegen.browser.js"></script>
+
 
 <script type="text/javascript" src="js/turtle-lang.js"></script>
 
@@ -22,6 +25,8 @@ if (x < 11){
 forward(12);</textarea>
 </div>
 
+
+
 <br/>
 <button onclick="compile()">Compile</button>
 <br/><br/>
@@ -36,6 +41,9 @@ Output: <br/>
 </style>
 
 <script>
+
+  
+
 
   var myCodeMirror;
 
@@ -66,5 +74,5 @@ Output: <br/>
 
     document.getElementById('output').innerHTML = turtleCode;
   }
-   
+
 </script>

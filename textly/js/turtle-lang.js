@@ -171,7 +171,13 @@ Textly.Lang.TurtleKeywords = {
   };
 
 
-// macros with sweet.js
+// macros with http://sweetjs.org/
+// this works really well - except for the requirejs bit and it's using 10,000 libraries
+// I did get it to work in a test file - but don't know how to integrate it w/ blockly given the requirejs bit
+//   then you can call sweet.compile() passing in a string that is the rules concatenated with the user entered 
+//   code on the return object call .code and you get the re-written version. It could be really cool if I could 
+//   just figure out what to do about requirejs.
+
 // macro and {
 //   rule infix {
 //     $lhs:expr | $rhs:expr
